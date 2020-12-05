@@ -1,0 +1,111 @@
+<template>
+<div>
+  <HHHeader/>
+    <b-container class="bv-example-row">
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="8">
+        <b-card
+          class="mt-3"
+          header="내 정보"
+          style="max-width: 40rem;"
+          align="left"
+        >
+      <b-form class="login" >
+        <b-form-group label="아이디" label-for="userid">
+          <b-form-input
+            id="id"
+            v-model="user.id"
+            required
+            readonly
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group label="비밀번호" label-for="userpwd">
+          <b-form-input
+            type="password"
+            id="pass"
+            v-model="user.pass"
+            required
+          ></b-form-input>
+        </b-form-group>
+          <b-form-group label="비밀번호 확인" label-for="pwdcheck">
+          <b-form-input
+            type="password"
+            id="pwdcheck"
+            v-model="user.pass"
+            required
+          ></b-form-input>
+          </b-form-group>
+          <b-form-group label="이메일" label-for="email">
+          <b-form-input
+            id="email"
+            v-model="user.email"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-button type="button" variant="primary" class="m-1" @click="modify"
+          >정보수정</b-button
+        >
+        <b-button type="button" variant="success" class="m-1" @click="remove"
+          >회원탈퇴</b-button
+        >
+      </b-form>
+      </b-card>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+  </b-container>
+  <HHFooter/>
+  </div>
+</template>
+
+<script>
+import HHHeader from './HHHeader.vue'
+import HHFooter from './HHFooter.vue'
+import axios from 'axios'
+import Vue from "vue";
+import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
+
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
+export default {
+  data() {
+    return {
+      user: null
+    };
+  },
+  created() {
+    axios
+      .get(`${SERVER_URL}user/info`)
+      .then((response) => {
+        this.user = response.data.user;
+      })
+      .catch(() => {
+        this.$store.dispatch("LOGOUT").then(() => this.$router.replace("/"));
+      });
+  },
+
+  methods: {
+    modify(){
+      this.$store.dispatch("MODIFY", this.user);
+      this.$router.replace(`/`)
+    },
+
+    remove(){
+      this.$store.dispatch("DELETE", this.user.id);
+      this.$router.replace(`/`)
+    }
+  },
+
+  components:{
+    HHHeader,
+    HHFooter,
+  }
+}
+</script>
+
+<style>
+
+</style>
