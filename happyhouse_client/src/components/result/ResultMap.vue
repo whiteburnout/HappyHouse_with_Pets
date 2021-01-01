@@ -39,6 +39,7 @@ const marketMarker = require('../../assets/market.png');//편의점 마커
 const searchStore = 'searchStore';
 const reviewStore = 'reviewStore';
 
+const KAKAO_MAP_API_KEY = process.env.VUE_APP_KAKAO_MAP_API_KEY;//카카오 맵 API 키
 
 export default {
   name: 'app',
@@ -549,8 +550,8 @@ export default {
       const script = document.createElement('script');
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=e3430083d75bcdedc109154500105017&libraries=services';
+      script.src = 
+        'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=' + KAKAO_MAP_API_KEY + '&libraries=services';
       document.head.appendChild(script);
     },
     showdetail(change, index) {//주택마커 클릭시 콜백함수
