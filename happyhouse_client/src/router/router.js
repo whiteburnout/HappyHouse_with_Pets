@@ -5,8 +5,6 @@ import Login from '../components/HHLogin.vue'
 import Join from '../components/HHJoin.vue'
 import Mypage from '../components/HHMypage.vue'
 import Result from '../components/result/Result.vue'
-//import Board from '../components/Board/Board.vue';
-//import Insert from '../components/Board/Insert.vue';
 import BoardRoute from './boardRouter';
 
 Vue.use(VueRouter)
@@ -19,28 +17,42 @@ Vue.use(VueRouter)
 //     } else next("/login" + nextRoute);//아니면 로그인페이지
 //   };
 
+// const onlyAuthUser = async (to, from, next) => {
+//     let token = localStorage.getItem("access-token");
+//     if (store.state.userInfo == null && token) {
+//       await store.dispatch("GET_MEMBER_INFO", token);
+//     }
+//     if (store.state.userInfo === null) {
+//       alert("로그인이 필요한 페이지입니다..");
+//       // next({ name: "login" });
+//       router.push({ name: "login" });
+//     } else {
+//       next();
+//     }
+//   };
+
 const routes = [
-    {
+    {//메인
         path: '/',
         name: 'Main',
         component: Main
     },
-    {
+    {//로그인
         path: '/login',
         name: 'login',
         component: Login
     },
-    {
+    {//회원가입
         path: '/join',
         name: 'join',
         component: Join
     },
-    {
+    {//내정보
         path: '/mypage',
         name: 'mypage',
         component: Mypage
     },
-    {
+    {//검색결과
         path: '/result',
         name: 'result',
         component: Result

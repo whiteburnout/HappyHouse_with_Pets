@@ -52,7 +52,7 @@
 <script>
 import HHHeader from '../HHHeader';
 import HHFooter from '../HHFooter';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 const boardStore = 'boardStore';
 
@@ -64,17 +64,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getUserNo', 'getUserId']),
+    ...mapState(['userInfo']),
   },
   methods: {
     ...mapActions(boardStore, ['reqInsertList']),
     onSubmit() {
-      console.log(this.getUserNo);
+      console.log(this.userInfo.id);
       let result = this.reqInsertList({
         title: this.title,
         content: this.content,
-        admin: this.getUserId == 'admin' ? 0 : 1,
-        id: this.getUserNo,
+        admin: this.userInfo.id == 'admin' ? 0 : 1,//관리자인지 아닌지
+        id: this.userInfo.id,
       });
       if (result == 0) {
         alert('게시글이 등록되지 않았습니다.');

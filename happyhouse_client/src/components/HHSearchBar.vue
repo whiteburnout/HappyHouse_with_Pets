@@ -1,116 +1,134 @@
 <template>
-  <section id="searchbar">
-    <b-container>
+  <section id="searchbar" style="height: 7%">
+    <b-container style="height: 100%">
       <!-- Using components -->
-      <b-row class="py-4">
-        <b-col>
+      <b-row class="py-4" style="height: 100%">
+        <b-col style="height: 100%">
           <b-input-group>
-            <b-form-select
-              v-model="payload.selected"
-              :options="options"
-              id="select"
-              style="max-width: 15%;"
-            ></b-form-select>
             <b-form-input
               v-model="payload.keyword"
               placeholder="아파트 이름, 동으로 검색해보세요."
               @keypress.enter="search"
+              @keyup="autocomplete"
+              autocomplete="off"
+              id="search-input"
+              type="search"
             ></b-form-input>
             <b-input-group-append style="width: 10%;">
               <b-button variant="success" @click.stop="search">검색</b-button>
             </b-input-group-append>
           </b-input-group>
+            <span style="background-color: white; width: 90%; max-height: 3000%; overflow: auto; display : block; z-index : 100; position:relative"
+            v-if="payload.keyword != ''">
+              <table style="width: 90%;">
+                <td>
+                  <tr v-for="(dong) in autodong" :key="dong.dong">
+                    <td  @click="autosearch(dong.dong)">
+                      <img src="../assets/locationmarker.png" style="width:7%;"/>
+                      {{dong.city}}
+                      {{dong.gugun}}
+                      {{dong.dong}}
+                    </td>
+                  </tr>
+                  <tr v-for="(house) in autohouse" :key="house.no">
+                    <td  @click="autosearch(house.aptName)">
+                      <img src="../assets/housemarker.png" style="width:7%;"/>
+                      {{house.dong}}
+                      {{house.aptName}}
+                    </td>
+                  </tr>
+                </td>
+                <td style="border-left:1px solid; width:30%;" v-if="visited.length > 0">
+                  최근 검색 기록
+                  <tr  v-for="(value) in visited" :key="value">
+                    <td  @click="autosearch(value)">
+                      <img src="../assets/watch.png" style="width:7%;"/>
+                      {{value}}
+                    </td>
+                  </tr>
+                </td>
+              </table>
+            </span>
         </b-col>
-        <template v-if="getRoot()">
-          <b-col cols="4">
-            <b-button-group style="width: 70%">
-              <b-button type="button" variant="danger" @click="getHospital"
-                >동물병원</b-button
-              >
-              <b-button type="button" variant="secondary" @click="getPharmacy"
-                >동물약국</b-button
-              >
-              <b-button type="button" variant="success" @click="getPark"
-                >공원</b-button
-              >
-            </b-button-group>
-          </b-col>
-        </template>
+      </b-row>
+      <b-row>
+
       </b-row>
     </b-container>
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
+import {createInstance} from '../store/modules/index.js';
+
+const instance = createInstance();
+const searchStore = 'searchStore';
 
 export default {
   data() {
     return {
+      // 검색어
       payload: {
-        selected: '',
         keyword: '',
       },
-      options: [
-        { value: '', text: '아파트/동 선택', disabled: true },
-        { value: 'apt', text: '아파트' },
-        { value: 'dong', text: '동' },
-      ],
-      hospital: false,
-      pharmacy: false,
-      park: false,
+      //지역이름 자동완성, 주택이름 자동완성
+      autodong: [],
+      autohouse : [],
+      //최근 검색 기록 저장할 배열
+      visited:[],
     };
   },
+
+  created() {
+    //쿠키에서 최근 검색기록 가져와서 저장
+    let temp = this.getCookie("visited");
+    let result = temp.split(',');
+    this.visited = result;
+  },
   methods: {
-    search() {
-      if (!this.payload.selected) {
-        alert('아파트/동을 선택해주세요.');
-      } else if (!this.payload.keyword) {
+    ...mapActions(searchStore, ['SEARCH']),
+
+    search() {//검색
+      if (!this.payload.keyword) {
         alert('검색어를 입력해주세요.');
       } else {
-        this.$store.dispatch('SEARCH', this.payload);
+        this.SEARCH(this.payload);
         this.$router.push('/result');
       }
     },
-    getRoot() {
-      //console.log(window.location.pathname);
-      if (window.location.pathname == '/result') return true;
-      else return false;
-    },
-    getHospital() {
-      if (this.hospital == false) {
-        this.$store.dispatch('HOSPITAL', this.getHouse[0].dong);
-        this.hospital = true;
-        //this.$router.push('/result');
-      } else {
-        this.$store.commit('HOSPITALCLEAR');
-        this.hospital = false;
-      }
-    },
-    getPharmacy() {
-      if (this.pharmacy == false) {
-        this.$store.dispatch('PHARMACY', this.getHouse[0].dong);
-        this.pharmacy = true;
-        //this.$router.push('/result');
-      } else {
-        this.$store.commit('PHARMACYCLEAR');
-        this.pharmacy = false;
-      }
-    },
-    getPark() {
-      if (this.park == false) {
-        this.$store.dispatch('PARK', this.getHouse[0].dong);
-        this.park = true;
-        //this.$router.push('/result');
-      } else {
-        this.$store.commit('PARKCLEAR');
-        this.park = false;
-      }
-    },
-  },
 
-  computed: {
-    ...mapGetters(['getHouse']),
+    autosearch(keyword){//검색어 자동완성을 클릭했을 시
+        this.payload.keyword = keyword;
+        this.SEARCH(this.payload);
+        this.$router.push('/result');
+    },
+
+    autocomplete(){//검색어 자동완성 기능
+      instance
+      .get(`house/auto/dong/${this.payload.keyword}`)
+      .then((res) => {this.autodong = [], this.autodong = res.data})
+      .catch((error) => console.log(error))
+
+      instance
+      .get(`house/auto/house/${this.payload.keyword}`)
+      .then((res) => {this.autohouse = [], this.autohouse = res.data})
+      .catch((error) => console.log(error))
+    },
+    //쿠키가져오기
+    getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+  
+    for (var i = 0; i < val.length; i++) {
+      x = val[i].substr(0, val[i].indexOf('='));
+      y = val[i].substr(val[i].indexOf('=') + 1);
+      x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+      if (x == cookie_name) {
+        return unescape(y); // unescape로 디코딩 후 값 리턴
+      }
+    }
+    }
   },
 };
 </script>

@@ -86,14 +86,14 @@
 
               <b-row>
                 <b-col class="col-lg-2">
-                  <box-icon
-                    type="logo"
-                    name="google"
+                  <box-icon 
+                    name='map' 
+                    type='solid'
                     size="md"
-                    color="#327160"
-                  ></box-icon>
+                    color="#327160">
+                  </box-icon>
                 </b-col>
-                <b-col class="my-auto">Google map</b-col>
+                <b-col class="my-auto">Kakao map</b-col>
               </b-row>
             </div>
           </b-col>

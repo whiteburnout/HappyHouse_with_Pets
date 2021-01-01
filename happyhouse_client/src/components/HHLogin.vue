@@ -27,10 +27,10 @@
             v-model="user.pass"
             required
             placeholder="비밀번호 입력"
-            @keypress.enter="login"
+            @keypress.enter="onSubmit"
           ></b-form-input>
         </b-form-group>
-        <b-button type="button" variant="primary" class="m-1" @click="login"
+        <b-button type="button" variant="primary" class="m-1" @click="onSubmit"
           >로그인</b-button
         >
         <b-button type="button" variant="success" class="m-1" router-link to ='/join'
@@ -51,6 +51,7 @@ import HHHeader from './HHHeader.vue'
 import HHFooter from './HHFooter.vue'
 import Vue from "vue";
 import VueRouter from "vue-router";
+import { login } from "../store/modules/userStore";
 
 Vue.use(VueRouter);
 
@@ -63,6 +64,7 @@ export default {
       id:"",
       pass:""
     },
+    isLoginError : null,
   };
 },
 
@@ -73,13 +75,36 @@ computed: {
   },
 
   methods: {
-    login: function() {
+    onSubmit() {
       // LOGIN 액션 실행
       // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
-      this.$store
-        .dispatch("LOGIN", this.user)
-        .then(() => this.$router.replace(`/${this.nextRoute}`))
-        .catch(({ message }) => (this.msg = message));
+      // this.$store
+      //   .dispatch("LOGIN", this.user)
+      //   .then(() => this.$router.replace(`/${this.nextRoute}`))
+      //   .catch(({ message }) => (this.msg = message));
+      localStorage.setItem("access-token", "");
+      login(//로그인
+        this.user,
+        (response) => {
+          if (response.data.message === "success") {
+            let token = response.data["access-token"];
+            this.$store.commit("setIsLogined", true);
+            localStorage.setItem("access-token", token);
+
+            this.$store.dispatch("GET_MEMBER_INFO", token);
+            console.log("성공");
+            this.$router.replace(`/${this.nextRoute}`);
+          } else {
+            this.isLoginError = true;
+            alert("존재하지 않는 회원입니다.");
+            console.log("실패");
+          }
+        },
+        (error) => {
+          console.error(error);
+          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+      );
     }
   },
 

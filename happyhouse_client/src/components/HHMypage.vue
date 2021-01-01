@@ -43,7 +43,7 @@
             required
           ></b-form-input>
         </b-form-group>
-        <b-button type="button" variant="primary" class="m-1" @click="modify"
+        <b-button type="button" variant="primary" class="m-1" @click="onSubmit"
           >정보수정</b-button
         >
         <b-button type="button" variant="success" class="m-1" @click="remove"
@@ -62,39 +62,73 @@
 <script>
 import HHHeader from './HHHeader.vue'
 import HHFooter from './HHFooter.vue'
-import axios from 'axios'
 import Vue from "vue";
 import VueRouter from "vue-router";
+import { mapState } from "vuex";
+import { Delete, Modify, login } from "../store/modules/userStore";
 
 Vue.use(VueRouter);
 
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
 export default {
+
+  created() {//생성할때 자동완성
+    this.user.id = this.userInfo.id;
+    this.user.pass = this.userInfo.pass;
+    this.user.email = this.userInfo.email;
+  },
+
+  watch:{
+    userInfo: function(){
+      this.user.id = this.userInfo.id;
+      this.user.pass = this.userInfo.pass;
+      this.user.email = this.userInfo.email;
+    }
+  },
   data() {
     return {
-      user: null
+      user: {id : null, pass : null, email : null}
     };
   },
-  created() {
-    axios
-      .get(`${SERVER_URL}user/info`)
-      .then((response) => {
-        this.user = response.data.user;
-      })
-      .catch(() => {
-        this.$store.dispatch("LOGOUT").then(() => this.$router.replace("/"));
-      });
+  computed: {
+    ...mapState(["userInfo"])
   },
-
   methods: {
-    modify(){
-      this.$store.dispatch("MODIFY", this.user);
-      this.$router.replace(`/`)
+    onSubmit(){//회원정보 수정 수정 후에 토큰정보 변경을 위해 로그아웃 후 로그인
+      Modify(this.user);
+      this.$store
+      .dispatch('LOGOUT')
+      .then(() => {
+        login(
+        this.user,
+        (response) => {
+          if (response.data.message === "success") {
+            let token = response.data["access-token"];
+            this.$store.commit("setIsLogined", true);
+            localStorage.setItem("access-token", token);
+
+            this.$store.dispatch("GET_MEMBER_INFO", token);
+            console.log("성공");
+            this.$router.replace(`/`)
+          } else {
+            this.isLoginError = true;
+            console.log("실패");
+          }
+        },
+        (error) => {
+          console.error(error);
+          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+       );})
+      .catch(() => {});
     },
 
-    remove(){
-      this.$store.dispatch("DELETE", this.user.id);
+    remove(){//회원탈퇴
+      Delete(this.user.id)
+      this.$store
+        .dispatch('LOGOUT')
+        .then(() => {this.$router.replace("/")})
+        .catch(() => {});
       this.$router.replace(`/`)
     }
   },

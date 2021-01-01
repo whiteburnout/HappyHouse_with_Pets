@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <HHHeader></HHHeader>
-    <HHSearchBar></HHSearchBar>
+  <div style="position:relative; height:100vh; overflow: hidden;">
+    <HHHeader style="position:relative; height:15%;"></HHHeader>
     <!-- <SearchDetail></SearchDetail> -->
 
-    <b-row>
-      <!-- <b-col cols="3" class="px-0" style="max-height: 15%;"
-        ><ResultList></ResultList
-      ></b-col> -->
+    <b-row style="position:relative; height:85%;">
       <b-col class="px-0"><ResultMap></ResultMap></b-col>
     </b-row>
   </div>
@@ -15,20 +11,15 @@
 
 <script>
 import HHHeader from '../HHHeader';
-//import ResultList from './ResultList';
 import ResultMap from './ResultMap';
-import HHSearchBar from '../HHSearchBar';
-// import SearchDetail from './SearchDetail'
 
 export default {
   components: {
     HHHeader,
-    //ResultList,
     ResultMap,
-    HHSearchBar,
-    // SearchDetail
   },
 };
 </script>
 
-<style></style>
+<style>
+</style>

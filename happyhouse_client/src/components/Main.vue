@@ -1,13 +1,9 @@
 <template>
-  <div>
+  <div style="position:relative; height:100vh; overflow: auto;">
     <HHHeader></HHHeader>
     <HHSearchBar></HHSearchBar>
     <HHContent></HHContent>
     <HHFooter></HHFooter>
-    <!-- <hh-header></hh-header>
-    <hh-search-bar></hh-search-bar>
-    <hh-content></hh-content>
-    <hh-footer></hh-footer> -->
   </div>
 </template>
 

@@ -14,7 +14,6 @@
             id="title"
             v-model="title"
             :state="title.length > 0"
-            disabled
             placeholder="title"
           ></b-form-input>
         </b-form-group>
@@ -52,7 +51,7 @@ export default {
             content: '',
         }
     },
-    created() {
+    created() {//내용 초기화
         this.title = this.getItem.title;
         this.content = this.getItem.content;
     },
@@ -67,7 +66,8 @@ export default {
         ]),
         onSubmit() {
           console.log(this.getUserNo);
-            let result = this.reqModify({ 
+            let result = this.reqModify({
+                title: this.title,
                 no: this.getItem.no,
                 content: this.content 
             });

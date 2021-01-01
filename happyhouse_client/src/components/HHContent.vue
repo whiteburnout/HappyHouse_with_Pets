@@ -1,5 +1,5 @@
 <template>
-  <section id="intro" class="d-flex align-items-center">
+  <section id="intro" class="d-flex align-items-center" style="z-index:5;">
     <b-container>
       <b-row>
         <b-col

@@ -20,9 +20,8 @@
             placeholder="아이디 입력"
             @blur="idcheck()"
           ></b-form-input>
-          <div v-html="idcoment"></div>
-          <!-- <b-button type="button" variant="primary" class="m-1" @click="join"
-          >중복확인</b-button> -->
+          <!-- 아이디 중복여부 코맨트 -->
+          <div v-html="idcomment"></div>
         </b-form-group>
         <b-form-group label="비밀번호" label-for="userpwd">
           <b-form-input
@@ -41,7 +40,8 @@
             placeholder="비밀번호 확인"
             @blur="passcheck()"
           ></b-form-input>
-          <div v-html="passcoment"></div>
+          <!-- 비밀번호 일치여부 코맨트 -->
+          <div v-html="passcomment"></div>
           </b-form-group>
           <b-form-group label="이메일" label-for="email">
           <b-form-input
@@ -51,7 +51,7 @@
             placeholder="이메일 입력"
           ></b-form-input>
         </b-form-group>
-        <b-button type="button" variant="primary" class="m-1" @click="join"
+        <b-button type="button" variant="primary" class="m-1" @click="onSubmit"
           >회원가입</b-button
         >
         <b-button type="button" variant="success" class="m-1" router-link to ='/'
@@ -73,6 +73,7 @@ import HHFooter from './HHFooter.vue'
 import Vue from "vue";
 import VueRouter from "vue-router";
 import axios from 'axios';
+import { Join } from "../store/modules/userStore";
 
 const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
@@ -84,11 +85,11 @@ export default {
   data() {
     return {
       user:{id : "", pass : "", email : ""},
-      passsecond:"",
-      idcoment:"",
-      passcoment:"",
-      idconfirm: false,
-      passconfirm: false,
+      passsecond:"",//비밀번호 체크 변수(2번째)
+      idcomment:"",//아이디 중복여부 알려주는 코맨트
+      passcomment:"",//비밀번호 일치여부 알려주는 코맨트
+      idconfirm: false,//중복여부 확인되면 true
+      passconfirm: false,//일치여부 확인되면 true
     }
   },
 
@@ -98,14 +99,13 @@ export default {
   },
 
   methods:{
-    join(){
-      
-      if(this.idconfirm && this.passconfirm){
-        if(this.user.email == ""){
+    onSubmit(){//가입
+      if(this.idconfirm && this.passconfirm){//비밀번호와 아이디가 확인되었을때
+        if(this.user.email == ""){//이메일 비었을때
         alert("이메일을 입력하세요.");
         }
         else{
-        this.$store.dispatch("JOIN", this.user);
+        Join(this.user);
         this.$router.replace('/');
         }
       }
@@ -113,39 +113,39 @@ export default {
         alert("아이디와 비밀번호를 확인하세요.")
       }
     },
-    idcheck(){
+    idcheck(){//아이디 중복여부 확인하는 비동기통신 엑시오스
       axios
       .get((`${SERVER_URL}user/check/` + this.user.id))
-      .then(res =>(this.result(res.data)))
+      .then(res =>(this.result(res.data)))//성공시 result함수 호출
       .catch(exp => console.log(exp))
     },
-    passcheck(){
+    passcheck(){//비밀번호 일치여부 확인하는 함수
       if(this.user.pass == this.passsecond && this.user.pass != "" && this.passsecond != "")
       {
-        this.passcoment = "<p style = \"color:green; font-size: 16px;\">비밀번호가 일치합니다.</p>"
+        this.passcomment = "<p style = \"color:green; font-size: 16px;\">비밀번호가 일치합니다.</p>"
         this.passconfirm = true;  
       }
       else if(this.user.pass != "" && this.passsecond != "")
       {
-        this.passcoment = "<p style = \"color:red; font-size: 16px;\">비밀번호가 일치하지 않습니다.</p>"
+        this.passcomment = "<p style = \"color:red; font-size: 16px;\">비밀번호가 일치하지 않습니다.</p>"
         this.passconfirm = false;  
       }
       else if(this.user.pass == "" || this.passsecond == "")
       {
-        this.passcoment = ""
+        this.passcomment = ""
         this.passconfirm = false;  
       }
     },
 
-    result(data){
+    result(data){//비동기통신 값(true, false)에 따라서 해당 코맨트를 띄워준다.
       if(!data)
       {
-        this.idcoment = "<p style = \"color:green; font-size: 16px;\">사용 가능한 아이디입니다.</p>"
+        this.idcomment = "<p style = \"color:green; font-size: 16px;\">사용 가능한 아이디입니다.</p>"
         this.idconfirm = true;
       }
       else
       {
-        this.idcoment = "<p style = \"color:red; font-size: 16px;\">중복된 아이디입니다.</p>"
+        this.idcomment = "<p style = \"color:red; font-size: 16px;\">중복된 아이디입니다.</p>"
         this.idconfirm = false;
       }
     }
