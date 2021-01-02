@@ -307,7 +307,8 @@ export default {
       this.parshow = false;
       this.conshow = false;
       this.marketshow = false;
-      this.fail = true;
+      if(this.getHousePosition.length == 0)
+        alert("검색결과가 없습니다.");
     },
     //병원 마커 스위치
     hospitalswitch(){

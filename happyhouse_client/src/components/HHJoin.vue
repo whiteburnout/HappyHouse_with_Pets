@@ -19,6 +19,7 @@
             required
             placeholder="아이디 입력"
             @blur="idcheck()"
+            autocomplete="off"
           ></b-form-input>
           <!-- 아이디 중복여부 코맨트 -->
           <div v-html="idcomment"></div>

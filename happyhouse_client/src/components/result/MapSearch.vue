@@ -26,7 +26,7 @@
           </b-button>
         </span>
       </b-input-group>
-      <div style="background-color: white; width: 90%; max-height: 10%; overflow: auto; display : block; z-index : 100; position:relative"
+      <div style="background-color: white; width: 90%; min-height:50px; max-height: 10%; overflow: auto; display : block; z-index : 100; position:relative"
           v-if="payload.keyword != ''">
           <table style="width: 100%; font-size:1.3rem;">
             <tr v-for="(dong) in autodong" :key="dong.dong">

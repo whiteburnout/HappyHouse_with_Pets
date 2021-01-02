@@ -18,7 +18,7 @@
               <b-button variant="success" @click.stop="search">검색</b-button>
             </b-input-group-append>
           </b-input-group>
-            <span style="background-color: white; width: 90%; max-height: 3000%; overflow: auto; display : block; z-index : 100; position:relative"
+            <span style="background-color: white; width: 90%; min-height:220px; max-height: 3000%; overflow: auto; display : block; z-index : 100; position:relative"
             v-if="payload.keyword != ''">
               <table style="width: 90%;">
                 <td>

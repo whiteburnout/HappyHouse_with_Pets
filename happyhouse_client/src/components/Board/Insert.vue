@@ -15,6 +15,7 @@
           v-model="title"
           required
           placeholder="title"
+          autocomplete="off"
         ></b-form-input>
       </b-form-group>
 

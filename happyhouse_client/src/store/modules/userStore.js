@@ -20,11 +20,11 @@ function login(user, success, fail) {
     .catch(fail);
 }
 
-function Modify(user) {
+function Modify(user, success, fail) {
   instance
     .put("user",JSON.stringify(user))
-    .then((res) => console.log(res))
-    .catch(exp => console.log(exp));
+    .then(success)
+    .catch(fail);
 }
 
 function Join(user) {

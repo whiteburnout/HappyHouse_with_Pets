@@ -18,6 +18,7 @@
             v-model="user.id"
             required
             placeholder="아이디 입력"
+            autocomplete="off"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="비밀번호" label-for="userpwd">

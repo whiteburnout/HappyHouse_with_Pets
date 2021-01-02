@@ -145,10 +145,12 @@ const searchStore = {
         },
         deleteHouse(state) { 
             state.house = [];
+            state.houseposition = [];
         }
     },
     actions: {
         SEARCH(context, payload) {
+            context.commit("deleteHouse");
             let temp = (payload.keyword);
             axios
                 .get(`${SERVER_URL}house/` + payload.keyword)

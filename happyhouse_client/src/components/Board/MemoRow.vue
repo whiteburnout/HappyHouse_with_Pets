@@ -7,8 +7,8 @@
             <div class="text-left ml-3">
               <p><strong>{{ memo.id }}</strong> {{ memo.memotime }}</p>
             </div>
-              <b-button variant="outline-primary" style="position: relative; width:10%; height:30%; left:50%;" @click="modify">수정</b-button>
-              <b-button variant="outline-danger" style="position: relative; width:10%; height:30%; left:50%;" @click="remove">삭제</b-button>
+              <b-button variant="outline-primary" style="position: absolute; width:10%; height:30%; left:80%;" @click="modify">수정</b-button>
+              <b-button variant="outline-danger" style="position: absolute; width:10%; height:30%; left:90%;" @click="remove">삭제</b-button>
           </b-row>
         </template>
         <b-card-body

@@ -11,8 +11,8 @@
                 {{review.wdate}}
                 <b-form-rating v-model="review.rating" color="#ff8800" readonly style="position: relative; left:-30%"></b-form-rating>
               </div>
-              <b-button variant="outline-primary" style="position: relative; width:15%; height:10%;left:10%; padding:0%;" @click="modify">수정</b-button>
-              <b-button variant="outline-danger" style="position: relative; width:15%; height:10%;left:10%; padding:0%;" @click="remove">삭제</b-button>
+              <b-button variant="outline-primary" style="position: absolute; width:15%; height:15%;left:70%; padding:0%;" @click="modify">수정</b-button>
+              <b-button variant="outline-danger" style="position: absolute; width:15%; height:15%;left:85%; padding:0%;" @click="remove">삭제</b-button>
           </b-row>
         </template>
         <!-- 보여주기창 -->

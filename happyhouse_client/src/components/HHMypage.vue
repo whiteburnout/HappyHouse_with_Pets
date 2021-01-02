@@ -95,32 +95,33 @@ export default {
   },
   methods: {
     onSubmit(){//회원정보 수정 수정 후에 토큰정보 변경을 위해 로그아웃 후 로그인
-      Modify(this.user);
-      this.$store
-      .dispatch('LOGOUT')
-      .then(() => {
-        login(
-        this.user,
-        (response) => {
-          if (response.data.message === "success") {
-            let token = response.data["access-token"];
-            this.$store.commit("setIsLogined", true);
-            localStorage.setItem("access-token", token);
+      Modify(this.user, (res)=>{ console.log(res);
+      this.$store.dispatch('LOGOUT')
+                  .then(() => {
+                    login(
+                    this.user,
+                    (response) => {
+                      if (response.data.message === "success") {
+                        let token = response.data["access-token"];
+                        this.$store.commit("setIsLogined", true);
+                        localStorage.setItem("access-token", token);
 
-            this.$store.dispatch("GET_MEMBER_INFO", token);
-            console.log("성공");
-            this.$router.replace(`/`)
-          } else {
-            this.isLoginError = true;
-            console.log("실패");
-          }
-        },
-        (error) => {
-          console.error(error);
-          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-        }
-       );})
-      .catch(() => {});
+                        this.$store.dispatch("GET_MEMBER_INFO", token);
+                        console.log("성공");
+                        this.$router.replace(`/`)
+                      } else {
+                        this.isLoginError = true;
+                        console.log("실패");
+                      }
+                    },
+                    (error) => {
+                      console.error(error);
+                      alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+                    }
+                  );})
+                  .catch(() => {});
+      },(err)=>{console.log(err);});
+
     },
 
     remove(){//회원탈퇴
