@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper file: 실행 할 쿼리 문을 저장하는 파일. 테이블 하나당 한개씩 작성
+namespace: 작업하는 테이블들을 구분해주기 위한 식별자 -->
+<mapper namespace="com.happyhouse.mapper.MemberMapper">
+
+
+   <select id="selectOne" parameterType="Member" resultType="Member"> 
+     select * from happyhousefinal_add.member where id = #{id} and pass = #{pass}
+   </select>
+   
+   	<select id="userInfo" parameterType="String" resultType="Member">
+		select *
+		from happyhousefinal_add.member
+		where id = #{id}
+	</select>
+   
+   <select id="check" parameterType="String" resultType="Member"> 
+     select * from happyhousefinal_add.member where id = #{id}
+   </select>
+  
+   <insert id="insert" parameterType="Member">
+   	insert into happyhousefinal_add.member values(#{id}, #{pass}, #{email})
+   </insert>
+  
+   <update id="update" parameterType="Member">
+   	update happyhousefinal_add.member set pass = #{pass}, email = #{email} where id = #{id}
+   </update>
+
+   <delete id="delete" parameterType="string"> 
+   	delete from happyhousefinal_add.member where id = #{id} 
+   </delete> 
+
+</mapper>
+
+
+
+
+
+

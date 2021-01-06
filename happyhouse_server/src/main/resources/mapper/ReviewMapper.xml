@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper file: 실행 할 쿼리 문을 저장하는 파일. 테이블 하나당 한개씩 작성 namespace: 작업하는 테이블들을 
+	구분해주기 위한 식별자 -->
+<mapper namespace="com.happyhouse.mapper.ReviewMapper">
+
+	<select id="selectAll" parameterType="String"
+		resultType="Review">
+		select * from review where houseno = #{houseno} order by wdate
+	</select>
+	
+	<insert id="insert" parameterType="Review">
+		insert into review(no, id,
+		content, wdate, houseno, rating)
+		values(null, #{id}, #{content}, now(),
+		#{houseno}, #{rating})
+	</insert>
+
+	<update id="update" parameterType="Review">
+		update review set
+		content=#{content}, rating=#{rating},
+		wdate=now()
+		where no = #{no}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		delete from review where no = #{no}
+	</delete>
+
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper file: 실행 할 쿼리 문을 저장하는 파일. 테이블 하나당 한개씩 작성
+namespace: 작업하는 테이블들을 구분해주기 위한 식별자 -->
+<mapper namespace="com.happyhouse.mapper.HouseMapper">
+
+  <select id="searchHouseInfo" resultType="HouseInfo">
+     select * from houseinfo where Aptname LIKE #{keyword} or dong LIKE #{keyword}
+   </select>
+   
+   <select id="searchByDong" resultType="HouseInfo">
+     select * from houseinfo where dong LIKE #{keyword} or Aptname LIKE #{keyword}
+   </select>
+   
+   <select id="searchDeal" parameterType="HouseDeal" resultType="HouseDeal">
+     select * from housedeal where dong = #{dong} and aptName = #{aptName} order by dealAmount
+   </select> 
+	
+   <select id="getDong" parameterType="String" resultType="DongCode">
+     select * from dongcode where dong like #{keyword}
+   </select> 
+   
+   <select id="getHouse" parameterType="String" resultType="HouseInfo">
+     select * from houseinfo where dong like #{keyword} or AptName like #{keyword}
+   </select> 
+
+</mapper>
+
+
+
+
+
+
