@@ -36,19 +36,11 @@
 
 ## 3.설치
 
-client에는 Vue.js, server는 Spring을 포함하고 있습니다.
-
-```
-npm install
-```
+happyhouse_client는 frontend Vue.js, happyhouse_server는 Spring을 포함하고 있습니다.
 
 ## 4.실행
-
-준비중입니다.
-
-```
-npm run serve
-```
+### AWS 웹 호스팅(pc환경을 권장합니다.)
+http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 5.기능
 
