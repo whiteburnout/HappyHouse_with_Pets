@@ -25,14 +25,15 @@
 ## 2.개발 도구 및 환경
 
 - Spring boot
+- Maven
 - Vue.js
-- Vue Bootstrap
 - Node.js
+- Vue Bootstrap
+- axios
 - MyBatis
 - MySQL
 - Kakao Map Api
 - Java8 (zulu open jdk)
-- Maven
 
 ## 3.설치
 
