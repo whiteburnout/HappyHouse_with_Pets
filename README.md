@@ -37,7 +37,7 @@
 
 ## 3.설치
 
-happyhouse_client는 frontend Vue.js, happyhouse_server는 Spring을 포함하고 있습니다.
+happyhouse_client는 frontend(Vue.js), happyhouse_server는 backend(Spring Boot)을 포함하고 있습니다.
 
 ## 4.실행
 ### AWS 웹 호스팅(pc환경을 권장합니다.)
