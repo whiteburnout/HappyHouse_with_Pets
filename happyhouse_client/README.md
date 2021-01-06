@@ -1,9 +1,9 @@
 # Frontend Vue.js
 
 ## 설치및 셋팅
-### nodemodule을 설치해야 합니다. 
+### nodemodules을 설치해야 합니다. 
 ```
 npm install
 ```
 
-### .env.local을 생성하여 Backend와 REST 방식으로 송수신 할 포트번호와 Kakao Map Api를 입력해야합니다.
+### .env.local을 생성하여 Backend와 REST 방식으로 송수신 할 포트번호와 Kakao Map Api Key를 입력해야합니다.
