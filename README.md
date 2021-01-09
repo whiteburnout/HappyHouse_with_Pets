@@ -51,7 +51,7 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
   <img src="./happyhouse_client/src/assets/로그인.gif" width="100%"></img>
 - 회원정보 수정/삭제<br/>
   <img src="./happyhouse_client/src/assets/회원수정삭제.gif" width="100%"></img>
-- 주택검색/검색어 자동완성/주택거래정보 조회/<br/>
+- 주택검색/검색어 자동완성/최근검색어/주택거래정보 조회/<br/>
   <img src="./happyhouse_client/src/assets/검색.gif" width="100%"></img>
 - 리뷰CRUD<br/>
   <img src="./happyhouse_client/src/assets/리뷰.gif" width="100%"></img>
