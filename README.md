@@ -26,11 +26,11 @@
 
 - Spring boot
 - Maven
+- MyBatis
 - Vue.js
 - Node.js
 - Vue Bootstrap
 - axios
-- MyBatis
 - MySQL
 - Kakao Map Api
 - Java8 (zulu open jdk)
@@ -63,21 +63,3 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
   <img src="./happyhouse_client/src/assets/댓글.gif" width="100%"></img>
 - 공지사항<br/>
   <img src="./happyhouse_client/src/assets/공지사항.JPG" width="100%"></img>
-
-<!-- ### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/). -->
