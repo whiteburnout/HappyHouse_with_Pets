@@ -51,15 +51,15 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
   <img src="./happyhouse_client/src/assets/로그인.gif" width="100%"></img>
 - 회원정보 수정/삭제<br/>
   <img src="./happyhouse_client/src/assets/회원수정삭제.gif" width="100%"></img>
-- 주택검색/검색어 자동완성/최근검색어/주택거래정보 조회/<br/>
+- 주택검색/검색어 자동완성/최근검색어/주택거래정보 조회<br/>
   <img src="./happyhouse_client/src/assets/검색.gif" width="100%"></img>
 - 리뷰CRUD<br/>
   <img src="./happyhouse_client/src/assets/리뷰.gif" width="100%"></img>
-- 추가정보(동물병원/동물약국/공원/편의점/대형마트)<br/>
+- 추가정보 조회(동물병원/동물약국/공원/편의점/대형마트)<br/>
   <img src="./happyhouse_client/src/assets/정보.gif" width="100%"></img>
 - 게시판CRUD<br/>
   <img src="./happyhouse_client/src/assets/게시판.gif" width="100%"></img>
 - 댓글CRUD<br/>
   <img src="./happyhouse_client/src/assets/댓글.gif" width="100%"></img>
-- 공지사항<br/>
+- 공지사항(관리자만 CRUD)<br/>
   <img src="./happyhouse_client/src/assets/공지사항.JPG" width="100%"></img>
