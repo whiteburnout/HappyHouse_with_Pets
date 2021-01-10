@@ -24,7 +24,7 @@
 
 ## 2.개발 도구 및 환경
 
-- Spring boot
+- Spring Boot
 - Maven
 - MyBatis
 - Vue.js
