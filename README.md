@@ -1,5 +1,5 @@
 
-<img src="./happyhouse_client/src/assets/logo.png" width="200px"></img>
+<img src="./happyhouse_client/src/assets/logo2.png" width="200px"></img>
 
 
 <br/>
