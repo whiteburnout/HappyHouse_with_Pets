@@ -30,7 +30,7 @@
 - Vue.js
 - Node.js
 - Vue Bootstrap
-- axios
+- Axios
 - MySQL
 - Kakao Map Api
 - Java8 (zulu open jdk)
