@@ -54,7 +54,7 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 5.기능 
 
-## 6.시현
+## 6.시연
 
 - 회원가입<br/>
   <img src="./happyhouse_client/src/assets/회원가입.gif" width="100%"></img>
