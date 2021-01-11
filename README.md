@@ -42,6 +42,7 @@
 - MySQL
 - Kakao Map Api
 - Java8 (zulu open jdk)
+- AWS EC2, S3
 
 ## 3.설치
 
@@ -51,7 +52,9 @@ happyhouse_client는 frontend(Vue.js), happyhouse_server는 backend(Spring Boot)
 ### AWS 웹 호스팅(pc환경을 권장합니다.)
 http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
 
-## 5.기능
+## 5.기능 
+
+## 6.시현
 
 - 회원가입<br/>
   <img src="./happyhouse_client/src/assets/회원가입.gif" width="100%"></img>
