@@ -42,7 +42,7 @@
 - MySQL
 - Kakao Map Api
 - Java8 (zulu open jdk)
-- AWS EC2, S3
+- AWS EC2,RDS,S3
 
 ## 3.설치
 
