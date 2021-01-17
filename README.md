@@ -23,7 +23,7 @@
 ## 1.프로젝트 소개
 - **HappyHouse_with_Pets** 프로젝트는 반려동물 양육가구를 타깃으로 한 부동산 웹 어플리케이션입니다.
 - **기간**: 2020.11.23 ~ 2020.12.07
-- **팀원**: 엄재웅[@eomjaewoong](https://github.com/eomjaewoong)
+- **팀원**: 엄재웅 [@eomjaewoong](https://github.com/eomjaewoong)
 - **목표기능**
   - 서울 시내 주택 정보 조회
   - 주택의 거래 정보 조회
