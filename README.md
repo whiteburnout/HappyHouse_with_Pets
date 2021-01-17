@@ -71,7 +71,7 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
   - 리뷰/별점
   - 반려동물시설(동물약국, 동물병원, 공원) 조회
   - 편의시설(편의점, 대형마트) 조회
-- 게시판
+- 자유게시판
   - 게시글 조회/작성/수정/삭제
   - 댓글 조회/작성/수정/삭제
 - 공지사항
