@@ -18,7 +18,7 @@
 
 5. [기능](#5기능)
 
-6. [화면](#6화면)
+6. [페이지](#6페이지)
 
 ## 1.프로젝트 소개
 - **HappyHouse_with_Pets** 프로젝트는 반려동물 양육가구를 타깃으로 한 부동산 웹 어플리케이션입니다.
@@ -56,8 +56,27 @@ happyhouse_client는 frontend(Vue.js), happyhouse_server는 backend(Spring Boot)
 http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 5.기능 
+- 회원
+  - 회원가입
+  - 회원정보 수정
+  - 회원 탈퇴
+  - 로그인/로그아웃
+- 검색
+  - 주택검색
+  - 주택거래정보 조회
+  - 검색어 자동완성 기능
+  - 최근 검색어 조회
+  - 리뷰/별점
+  - 반려동물시설(동물약국, 동물병원, 공원) 조회
+  - 편의시설(편의점, 대형마트) 조회
+- 게시판
+  - 게시글 조회/작성/수정/삭제
+  - 댓글 조회/작성/수정/삭제
+- 공지사항
+  - 관리자만 작성/수정/삭제
+  - 댓글 조회/작성/수정/삭제
 
-## 6.화면
+## 6.페이지
 
 - 회원가입<br/>
   <img src="./happyhouse_client/src/assets/회원가입.gif" width="100%"></img>
