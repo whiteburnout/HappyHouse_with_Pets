@@ -92,7 +92,7 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
   <img src="./happyhouse_client/src/assets/리뷰.gif" width="100%"></img>
 - 추가정보 조회<br/>
   <img src="./happyhouse_client/src/assets/정보.gif" width="100%"></img>
-- 게시판CRUD<br/>
+- 게시판<br/>
   <img src="./happyhouse_client/src/assets/게시판.gif" width="100%"></img>
 - 댓글<br/>
   <img src="./happyhouse_client/src/assets/댓글.gif" width="100%"></img>
