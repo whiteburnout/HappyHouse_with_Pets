@@ -54,7 +54,7 @@
 happyhouse_client는 frontend(Vue.js), happyhouse_server는 backend(Spring Boot)을 포함하고 있으며 client와 server는 REST API 방식으로 통신합니다.
 
 ## 4.실행
-### AWS 웹 호스팅(pc환경을 권장합니다.)
+### AWS 웹 호스팅
 http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 5.기능 
