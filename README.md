@@ -74,9 +74,11 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
 - 자유게시판
   - 게시글 조회/작성/수정/삭제
   - 댓글 조회/작성/수정/삭제
+  - 조회수
 - 공지사항
   - 관리자만 작성/수정/삭제
   - 댓글 조회/작성/수정/삭제
+  - 조회수
 
 ## 6.페이지
 
@@ -86,11 +88,11 @@ http://happyhouse-with-pets.s3-website.ap-northeast-2.amazonaws.com/
   <img src="./happyhouse_client/src/assets/로그인.gif" width="100%"></img>
 - 회원정보 수정/삭제<br/>
   <img src="./happyhouse_client/src/assets/회원수정삭제.gif" width="100%"></img>
-- 주택검색/주택거래정보 조회<br/>
+- 주택검색/주택거래정보<br/>
   <img src="./happyhouse_client/src/assets/검색.gif" width="100%"></img>
 - 리뷰/별점<br/>
   <img src="./happyhouse_client/src/assets/리뷰.gif" width="100%"></img>
-- 추가정보 조회<br/>
+- 편의시설/반려동물시설<br/>
   <img src="./happyhouse_client/src/assets/정보.gif" width="100%"></img>
 - 게시판<br/>
   <img src="./happyhouse_client/src/assets/게시판.gif" width="100%"></img>
